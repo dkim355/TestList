@@ -78,6 +78,7 @@ public class Test_ListImplementations {
 		}
 	}
 
+	
 	/**
 	 * Runs all tests on this list.  Note, may have to create new lists 
 	 * 
@@ -106,6 +107,10 @@ public class Test_ListImplementations {
 		test05_add_Single_Item_To_Pos_Zero_Of_Empty_List(className, list);
 		test06_add_Items_At_Front_Rear_And_In_Between(className, list);
 		test07_add_Multiple_Items(className, list);
+		test08_List_Get_item(className, list);
+		test09_List_Get_at_Beginning(className, list);
+		test10_List_Get_SingleItem(className, list);
+		test11_List_Get_LastItem(className, list);
 	}
 	
 
@@ -281,6 +286,103 @@ public class Test_ListImplementations {
 		 }
 		 
 		 
+	 }
+	
+	private static void test08_List_Get_item(String className, ListADT<String> list) {
+
+		 String name = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		 String ta_name = list.getClass().getName();
+
+		 try {
+			 list.get(-5);
+
+
+		 }
+
+		 catch(IndexOutOfBoundsException e) {
+			 failMsg(className+" test08_List_Get_item ","IndexOutOfBoundsException","not throwing an exception");
+		 }
+		 catch(Exception e) {
+			 failMsg(className+" test08_List_Get_item ","IndexOutOfBoundsException","Throwing other exceptions");
+		 }
+	 }
+
+	 private static void test09_List_Get_at_Beginning(String className, ListADT<String> list) {
+
+		 String name = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		 String ta_name = list.getClass().getName();
+
+		 String atZero = null;
+
+		 try {
+
+
+			 list.add("first");
+			 atZero = list.get(0);
+
+			 if(!list.get(0).equals("first")) {
+
+				 failMsg(name+" for "+ta_name, "first", ""+ atZero);
+
+			 } else {
+
+				 System.out.println(name + " for " + ta_name + " passed");
+
+			 }
+		 }
+		 catch(Exception e) {
+
+			 failMsg(name+" for "+ta_name, "first", ""+ atZero);
+		 }
+	 }
+	 //checking index that is non-negtive but huge number that goes out of bound
+	 private static void test10_List_Get_SingleItem(String className, ListADT<String> list) {
+
+		 String name = new Object(){}.getClass().getEnclosingMethod().getName();
+		 String ta_name = list.getClass().getName();
+		 String result;
+
+		 try {
+			 for(int i = 0 ; i < 10 ; i++){
+				 list.add(String.valueOf(i));
+			        }
+				 result = list.get(3);
+				 
+				 if(!list.get(3).equals("3")) {
+					 failMsg(name+" for "+ta_name, "3", ""+ result);
+					 
+				 } else {
+					 
+					 System.out.println(name + " for " + ta_name + " passed");
+				 }
+				 
+			}
+			catch(Exception e) {
+				failMsg(className+" test10_List_Get_SingleItem ","IndexOutOfBoundsException","Throwing other exceptions");
+			}
+	 }
+	 
+	 private static void test11_List_Get_LastItem(String className, ListADT<String> list) {
+		 String name = new Object(){}.getClass().getEnclosingMethod().getName();
+		 String ta_name = list.getClass().getName();
+		 String result;
+		 
+		 try {
+			 for(int i = 0; i < 8 ; i++) {
+				 list.add(String.valueOf(i));				 
+			 }
+			 result = list.get(list.size()-1);
+			 if(!list.get(7).equals("7")) {
+				 failMsg(name+" for "+ta_name, "7", ""+ result);
+			 } else {
+				 System.out.println(name + " for " + ta_name + " passed");
+			 }
+		 }
+		 catch(Exception e) {
+				failMsg(className+" test11_List_Get_LastItem ","IndexOutOfBoundsException","Throwing other exceptions");
+		 }
 	 }
 	
 }
