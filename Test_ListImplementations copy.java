@@ -113,6 +113,8 @@ public class Test_ListImplementations {
 		
 		test12_List_isEmpty(className, list);
 		
+		test13_List_Iterator(className, list);
+		
 		
 		
 				
@@ -394,7 +396,8 @@ public class Test_ListImplementations {
 	
 	       
 	        
-	     
+
+	
 	    	
 	    	 /**
 	         * creates empty List and adds multiple items
@@ -452,6 +455,39 @@ public class Test_ListImplementations {
         }
     }
 
+private static void test13__List_Iterator(String className, ListADT<String> list) {
+		 String name = new Object(){}.getClass().getEnclosingMethod().getName();
+		 String ta_name = list.getClass().getName();
+		 int numItems = 101;
+		 Object obj1 = null;
+		 Object obj2 = null;
+		 int pos = 0;
+		 list = constructListOfString(className);
+		 Iterator<String> itr = list.iterator();
+		 try {
+			 for(int i = 0; i < numItems; i++) {
+				 list.add(String.valueOf(i));
+			 }
+			 if(null == itr) {
+				 failMsg(name+"_no_iterator", "valid iterator", ""+itr);
+			 }
+			 while(itr.hasNext()) {
+				 obj1 = itr.next();
+				 obj2 = list.get(pos);
+				 pos++;
 
+
+				 if(!obj1.equals(obj2)) {
+					 failMsg(name+"_Iterator error : item in iterator is not correct","" + obj2,""+ obj1);
+				 }
+
+			 }
+			 System.out.println(name + " for " + ta_name + " passed");
+		 }
+
+		 catch(Exception e) {
+			 failMsg(className+" test12_List_Iterator ","NullPointerException","Throwing other exceptions");
+	 }
+	 }
 	
 }
